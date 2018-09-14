@@ -9,7 +9,10 @@ import jaci.gradle.nativedeps.NativeLib
 
 repositories{
     maven {url "${System.getProperty('user.home')}/releases/maven/release/"}
+    maven {url "http://devsite.ctr-electronics.com/maven/release/"}
 }
+
+ext.PhoenixVersion = "5.8.1"
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
@@ -39,16 +42,10 @@ model {
             targetPlatform = 'roborio'
         }
         
-        // coreLib(NativeLib) {
-        //     libraryName = 'coreLib'
-        //     staticMatchers << '**/*.a'                      // Static Libraries to be linked at compile time
-            
-        //     maven = "com.ctre.phoenix:core:5.8.0:linuxathena@zip"    // Load from maven. Must be a zip or zip-compatible (like a jar)
-        // }
         coreHeaders(NativeLib) {
             libraryName = 'coreHeaders'
             headerDirs << ''
-            maven = "com.ctre.phoenix:core:5.8.0:headers@zip"    // Load from maven. Must be a zip or zip-compatible (like a jar)
+            maven = "com.ctre.phoenix:core:${PhoenixVersion}:headers@zip"    // Load from maven. Must be a zip or zip-compatible (like a jar)
         }
 
         cciLib(NativeLib) {
@@ -56,24 +53,24 @@ model {
             staticMatchers << '**/*.a'                      // Static Libraries to be linked at compile time
             systemLibs << 'pthread'                               // System libs to load with -l (provided by toolchain)
             
-            maven = "com.ctre.phoenix:cci:5.8.0:linuxathena@zip"    // Load from maven. Must be a zip or zip-compatible (like a jar)
+            maven = "com.ctre.phoenix:cci:${PhoenixVersion}:linuxathena@zip"    // Load from maven. Must be a zip or zip-compatible (like a jar)
         }
         cciHeaders(NativeLib) {
             libraryName = 'cciHeaders'
             headerDirs << ''
-            maven = "com.ctre.phoenix:cci:5.8.0:headers@zip"    // Load from maven. Must be a zip or zip-compatible (like a jar)
+            maven = "com.ctre.phoenix:cci:${PhoenixVersion}:headers@zip"    // Load from maven. Must be a zip or zip-compatible (like a jar)
         }
 
         apiLib(NativeLib) {
             libraryName = 'apiLib'
             staticMatchers << '**/*.a'                      // Static Libraries to be linked at compile time
             
-            maven = "com.ctre.phoenix:api-cpp:5.8.0:linuxathena@zip"    // Load from maven. Must be a zip or zip-compatible (like a jar)
+            maven = "com.ctre.phoenix:api-cpp:${PhoenixVersion}:linuxathena@zip"    // Load from maven. Must be a zip or zip-compatible (like a jar)
         }
         apiHeaders(NativeLib) {
             libraryName = 'apiHeaders'
             headerDirs << ''
-            maven = "com.ctre.phoenix:api-cpp:5.8.0:headers@zip"    // Load from maven. Must be a zip or zip-compatible (like a jar)
+            maven = "com.ctre.phoenix:api-cpp:${PhoenixVersion}:headers@zip"    // Load from maven. Must be a zip or zip-compatible (like a jar)
         }
 
         ctrePhoenix(CombinedNativeLib){

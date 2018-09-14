@@ -10,6 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 /**
@@ -24,7 +26,8 @@ public class Robot extends IterativeRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  public static WPI_TalonSRX myTalon = new WPI_TalonSRX(1);
+  public static TalonSRX myTalon = new TalonSRX(1);
+
 
   /**
    * This function is run when the robot is first started up and should be
